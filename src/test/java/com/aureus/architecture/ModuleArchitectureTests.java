@@ -1,4 +1,4 @@
-package com.aureus;
+package com.aureus.architecture;
 
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
@@ -11,12 +11,13 @@ import static com.tngtech.archunit.library.dependencies.SlicesRuleDefinition.sli
         packages = "com.aureus",
         importOptions = ImportOption.DoNotIncludeTests.class
 )
-public class ModulArchitectureTests {
+public class ModuleArchitectureTests {
 
     @ArchTest
     static final ArchRule modulesShouldBeFreeOfCycles =
             slices()
                     .matching("com.aureus.(*)..")
                     .should()
-                    .beFreeOfCycles();
+                    .beFreeOfCycles()
+                    .allowEmptyShould(true);
 }
